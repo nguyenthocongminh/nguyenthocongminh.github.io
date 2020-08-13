@@ -110,9 +110,10 @@
         const googleDriveSpanToLink = (function() {
             const quickAccessIdentity = "[jscontroller='WAgSub']";
             const commonFileIdentity = "[class='WYuW0e']:not(.RDfNAe)";
+            const recentFileIdentity = ".a-u-xb-j";
 
             const getAllItem = function() {
-                let item_list = [quickAccessIdentity, commonFileIdentity];
+                let item_list = [quickAccessIdentity, commonFileIdentity, recentFileIdentity];
                 let items = item_list.join(",");
                 return document.querySelectorAll(items);
             };
