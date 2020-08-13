@@ -12,14 +12,13 @@
     'use strict';
 
     // Your code here...
-
     const js_helper_lib = (function () {
         const param = (function () {
             const isIE = function() {
                 let ua = window.navigator.userAgent;
                 let msie = ua.indexOf("MSIE ");
 
-                if (msie > -1 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
+                if (msie > -1 || !!navigator.userAgent.match(/Trident.*rv:11\./)) {
                     // If Internet Explorer, return true
                     // version = parseInt(ua.substring(msie + 5, ua.indexOf(".", msie)))
                     return true;
@@ -116,7 +115,7 @@
                 let item_list = [quickAccessIdentity, commonFileIdentity];
                 let items = item_list.join(",");
                 return document.querySelectorAll(items);
-            }
+            };
 
             const actionOpenToNewTab = function(e) {
                 let user_str = "";
@@ -135,7 +134,7 @@
                 }
                 window.open("https://drive.google.com/open?id=" + e.currentTarget.custom_param.file_id + user_str);
                 // window.open("https://drive.google.com/file/d/" + e.currentTarget.custom_param.file_id);
-            }
+            };
 
             const replaceAction = function() {
                 let items = getAllItem();
@@ -160,7 +159,7 @@
             const obverser = function() {
                 replaceAction();
                 function mutate(mutations) {
-                    mutations.forEach(function(mutation) {
+                    mutations.forEach(function(/* mutation */) {
                         replaceAction();
                     });
                 }
@@ -169,10 +168,10 @@
                 let config = { characterData: false, attributes: false, childList: true, subtree: true };
 
                 observer.observe(target, config);
-            }
+            };
 
             const run = function() {
-                if (window.location.hostname.search('drive.google.com') == -1) {
+                if (window.location.hostname.search('drive.google.com') === -1) {
                     return false;
                 }
                 let path = window.location.pathname.split('/');
@@ -187,7 +186,7 @@
                         obverser();
                     }
                 }, 1000);
-            }
+            };
 
             return {
                 run: run,
@@ -201,16 +200,16 @@
 
     const google = (function() {
         const videoPreviewToFrame = function() {
-            if (window.location.hostname.search('www.google.com') == -1 || js_helper_lib.param.get().q === undefined) {
+            if (window.location.hostname.search('www.google.com') === -1 || js_helper_lib.param.get().q === undefined) {
                 return false;
             }
             let needed = document.getElementsByClassName('twQ0Be');
-            if (needed.length == 0) {
+            if (needed.length === 0) {
                 return false;
             }
             needed = needed[0];
             let aTag = needed.getElementsByTagName('a');
-            if (aTag.length == 0) {
+            if (aTag.length === 0) {
                 return false;
             }
             needed.style.height = 'unset';
@@ -221,17 +220,18 @@
             let iframe = document.createElement('iframe');
             iframe.src = link;
             iframe.style.position = 'absolute';
-            iframe.style.top = 0;
-            iframe.style.left = 0;
+            iframe.style.top = '0';
+            iframe.style.left = '0';
             iframe.style.width = '100%';
             iframe.style.height = '100%';
-            iframe.frameBorder = "0";
+            iframe.style.border = '0px';
             iframe.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';
-            iframe.setAttribute('allowFullScreen', '')
-            iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin')
+            iframe.setAttribute('frameborder', '0');
+            iframe.setAttribute('allowFullScreen', '');
+            iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin');
             needed.innerHTML = '';
             needed.appendChild(iframe);
-        }
+        };
 
         return {
             videoPreviewToFrame: videoPreviewToFrame,
@@ -240,40 +240,42 @@
 
     const freesteamkeys = (function() {
         const onclickToLink = function() {
-            if (window.location.hostname.search('freesteamkeys') == -1) {
+            if (window.location.hostname.search('freesteamkeys') === -1) {
                 return false;
             }
             let btnMain = document.querySelectorAll("a.item-url[rel='nofollow']");
-            if (btnMain.length == 0) {
+            if (btnMain.length === 0) {
                 return false;
             }
             if (btnMain.length > 1) {
                 console.log("Ambiguous button link. Feature in contructing");
                 return false;
             }
-            let href = btnMain[0].getAttribute('onclick').replace(/javascript:window.open\(\'([^']+)\'\);/gi, "$1");
-            btnMain[0].href = href;
-        }
+            btnMain[0].href = btnMain[0].getAttribute('onclick').replace(/javascript:window\.open\('([^']+)'\);/gi, "$1");
+        };
 
         return {
             onclickToLink: onclickToLink,
         }
     })();
 
-    if (window.location.hostname.search('freesteamkeys') != -1) {
+    if (window.location.hostname.search('freesteamkeys') !== -1) {
         for (const [func_name, func_execute] of Object.entries(freesteamkeys)) {
+            console.log(func_name);
             func_execute();
         }
     }
 
-    if (window.location.hostname.search('www.google.com') != -1) {
+    if (window.location.hostname.search('www.google.com') !== -1) {
         for (const [func_name, func_execute] of Object.entries(google)) {
+            console.log(func_name);
             func_execute();
         }
     }
 
-    if (window.location.hostname.search('drive.google.com') != -1) {
+    if (window.location.hostname.search('drive.google.com') !== -1) {
         for (const [func_name, func_execute] of Object.entries(googledrive)) {
+            console.log(func_name);
             func_execute();
         }
     }
