@@ -197,7 +197,7 @@
         return {
             googleDriveSpanToLink: googleDriveSpanToLink.run,
         }
-    })();
+    });
 
     const google = (function() {
         const videoPreviewToFrame = function() {
@@ -237,7 +237,7 @@
         return {
             videoPreviewToFrame: videoPreviewToFrame,
         }
-    })();
+    });
 
     const freesteamkeys = (function() {
         const onclickToLink = function() {
@@ -258,7 +258,7 @@
         return {
             onclickToLink: onclickToLink,
         }
-    })();
+    });
 
     const facebook = (function () {
         const addVideoSpeedControl = function () {
@@ -289,21 +289,21 @@
     })();
 
     if (window.location.hostname.search('freesteamkeys') !== -1) {
-        for (const [func_name, func_execute] of Object.entries(freesteamkeys)) {
+        for (const [func_name, func_execute] of Object.entries(freesteamkeys())) {
             console.log(func_name);
             func_execute();
         }
     }
 
     if (window.location.hostname.search('www.google.com') !== -1) {
-        for (const [func_name, func_execute] of Object.entries(google)) {
+        for (const [func_name, func_execute] of Object.entries(google())) {
             console.log(func_name);
             func_execute();
         }
     }
 
     if (window.location.hostname.search('drive.google.com') !== -1) {
-        for (const [func_name, func_execute] of Object.entries(googledrive)) {
+        for (const [func_name, func_execute] of Object.entries(googledrive())) {
             console.log(func_name);
             func_execute();
         }
