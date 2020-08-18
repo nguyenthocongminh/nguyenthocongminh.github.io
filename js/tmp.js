@@ -260,6 +260,34 @@
         }
     })();
 
+    const facebook = (function () {
+        const addVideoSpeedControl = function () {
+            function mutate(mutations) {
+                mutations.forEach(function(mutation) {
+                    let node = mutation['addedNodes'][0];
+                    let video = node.getElementsByTagName('video')[0];
+                    if (video !== undefined && typeof video === 'object') {
+                        video.addEventListener('loadstart', function (e) {
+                            let control_area = video.parentNode
+                                .querySelector('._170l._27db')
+                                .querySelector('._1otk._3t1r._4ubd');
+                            console.log(control_area);
+                        });
+                    }
+                });
+            }
+            let target = document.querySelector('._2jwg div:not([data-pagelet]):not([class])');
+            let observer = new MutationObserver( mutate );
+            let config = { characterData: false, attributes: false, childList: true, subtree: false };
+
+            observer.observe(target, config);
+        };
+
+        return {
+            addVideoSpeedControl: addVideoSpeedControl,
+        }
+    })();
+
     if (window.location.hostname.search('freesteamkeys') !== -1) {
         for (const [func_name, func_execute] of Object.entries(freesteamkeys)) {
             console.log(func_name);
