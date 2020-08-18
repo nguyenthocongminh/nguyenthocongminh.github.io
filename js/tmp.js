@@ -262,23 +262,53 @@
 
     const facebook = (function () {
         if (window.location.hostname.search('facebook.com') === -1) {
-            return false;
+            return {};
         }
 
-
+        let fontAwesome = document.createElement('link');
+        fontAwesome.rel = 'stylesheet';
+        fontAwesome.type = 'text/css';
+        fontAwesome.media = 'all';
+        fontAwesome.href = 'https://nguyenthocongminh.github.io/css/all.css';
+        document.head.appendChild(fontAwesome);
 
         const addVideoSpeedControl = function () {
+            function addBtnSpeedToVideo(video) {
+                let control_area_focus = video.parentNode
+                    .querySelector('._170l._27db')
+                    .querySelector('._1otk._3t1r._4ubd')
+                    .querySelectorAll('._1c7f')[2];
+                let btn_focus = control_area_focus.querySelector('._2j04');
+                let new_btn = document.createElement('div');
+                new_btn.className = '_2j04';
+                let new_btn_content_direct = document.createElement('div');
+                new_btn_content_direct.setAttribute('data-tooltip-content', 'Tốc độ');
+                new_btn_content_direct.setAttribute('data-hover', 'tooltip');
+                new_btn_content_direct.setAttribute('data-tooltip-position', 'above');
+                let button = document.createElement('button');
+                button.className = '_zbd _42ft';
+                button.setAttribute('tabindex', '0');
+                button.setAttribute('type', 'button');
+                let button_content = document.createElement('i');
+                button_content.className = 'fa fa-bolt _rwt';
+                button_content.style.width = '20px';
+                button_content.style.height = '20px';
+                button_content.style.display = 'inline-block';
+                button_content.style.color = 'white';
+                button_content.style.fontSize = '20px';
+                new_btn.appendChild(new_btn_content_direct);
+                new_btn_content_direct.appendChild(button);
+                button.appendChild(button_content);
+                control_area_focus.insertBefore(new_btn, btn_focus.nextSibling);
+            }
+
             function mutate(mutations) {
                 mutations.forEach(function(mutation) {
-                    let node = mutation['addedNodes'][0];
+                    let node = mutation.addedNodes[0];
                     let video = node.getElementsByTagName('video')[0];
                     if (video !== undefined && typeof video === 'object') {
                         video.addEventListener('loadstart', function (e) {
-                            let control_area_focus = video.parentNode
-                                .querySelector('._170l._27db')
-                                .querySelector('._1otk._3t1r._4ubd')
-                                .querySelectorAll('._1c7f')[2];
-                            document.createElement('div');
+                            addBtnSpeedToVideo(video);
                         });
                     }
                 });
@@ -311,6 +341,13 @@
 
     if (window.location.hostname.search('drive.google.com') !== -1) {
         for (const [func_name, func_execute] of Object.entries(googledrive())) {
+            console.log(func_name);
+            func_execute();
+        }
+    }
+
+    if (window.location.hostname.search('facebook.com') !== -1) {
+        for (const [func_name, func_execute] of Object.entries(facebook())) {
             console.log(func_name);
             func_execute();
         }
