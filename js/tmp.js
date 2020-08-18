@@ -261,6 +261,12 @@
     });
 
     const facebook = (function () {
+        if (window.location.hostname.search('facebook.com') === -1) {
+            return false;
+        }
+
+
+
         const addVideoSpeedControl = function () {
             function mutate(mutations) {
                 mutations.forEach(function(mutation) {
@@ -268,10 +274,11 @@
                     let video = node.getElementsByTagName('video')[0];
                     if (video !== undefined && typeof video === 'object') {
                         video.addEventListener('loadstart', function (e) {
-                            let control_area = video.parentNode
+                            let control_area_focus = video.parentNode
                                 .querySelector('._170l._27db')
-                                .querySelector('._1otk._3t1r._4ubd');
-                            console.log(control_area);
+                                .querySelector('._1otk._3t1r._4ubd')
+                                .querySelectorAll('._1c7f')[2];
+                            document.createElement('div');
                         });
                     }
                 });
@@ -286,7 +293,7 @@
         return {
             addVideoSpeedControl: addVideoSpeedControl,
         }
-    })();
+    });
 
     if (window.location.hostname.search('freesteamkeys') !== -1) {
         for (const [func_name, func_execute] of Object.entries(freesteamkeys())) {
