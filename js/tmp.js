@@ -272,6 +272,9 @@
         fontAwesome.href = 'https://nguyenthocongminh.github.io/css/all.css';
         document.head.appendChild(fontAwesome);
 
+        let old_ver = (document.getElementsByClassName('sidebarMode').length > 0);
+        let allowPlaybackRate = [0.25, 0.5, 1, 1.5, 2, 2.5];
+
         const addVideoSpeedControl = function () {
             let _case = 0;
 
@@ -283,7 +286,6 @@
             }
 
             function addBtnSpeedToVideo(video) {
-                let allowPlaybackRate = [0.25, 0.5, 1, 1.5, 2, 2.5];
                 let control_area_focus = video.parentNode
                     .querySelector('._170l._27db')
                     .querySelector('._1otk._3t1r._4ubd')
