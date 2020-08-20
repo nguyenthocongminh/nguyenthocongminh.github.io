@@ -405,13 +405,28 @@
             function mutate(mutations) {
                 mutations.forEach(function(mutation) {
                     let node = mutation.addedNodes[0];
-                    if (_case === 2) {
-                        let video = node.getElementsByTagName('video')[0];
-                        if (video !== undefined && typeof video === 'object') {
-                            video.addEventListener('loadstart', function (/* e */) {
-                                addBtnSpeedToVideo(video);
-                            });
-                        }
+                    switch(_case) {
+                        case 1:
+                            setTimeout(function (e) {
+                                node = mutation.addedNodes[0];
+                                let video = node.querySelectorAll('video');
+                                if (video.length > 0) {
+                                    for (let i = 0; i < video.length; i++) {
+                                        addBtnSpeedToVideo(video[i]);
+                                    }
+                                }
+                            }, 1000);
+                            break;
+                        case 2:
+                            let video = node.getElementsByTagName('video')[0];
+                            if (video !== undefined && typeof video === 'object') {
+                                video.addEventListener('loadstart', function (/* e */) {
+                                    addBtnSpeedToVideo(video);
+                                });
+                            }
+                            break;
+                        default:
+                        // code block
                     }
                 });
             }
@@ -431,24 +446,32 @@
                 _case = getCase(target);
             }
 
-            let loop = setInterval(function (/* e */) {
-                if (_case === 2) {
-                    target = document.querySelector('._2jwg div:not([data-pagelet]):not([class])');
-                    if (target.style.cssText === "") {
-                        clearInterval(loop);
-                        let first_nodes = target.querySelectorAll('[class][data-ft]');
-                        for (let i = 0; i < first_nodes.length; i++) {
-                            let video = first_nodes[i].getElementsByTagName('video')[0];
-                            if (video !== undefined && typeof video === 'object') {
-                                setTimeout(function () {
-                                    addBtnSpeedToVideo(video);
-                                }, 1000);
+            switch(_case) {
+                case 1:
+                    target = document.querySelector('[role="feed"] > [id*="more_pager"] > div:first-child');
+                    start_init(target);
+                    break;
+                case 2:
+                    let loop = setInterval(function (/* e */) {
+                        target = document.querySelector('._2jwg div:not([data-pagelet]):not([class])');
+                        if (target.style.cssText === "") {
+                            clearInterval(loop);
+                            let first_nodes = target.querySelectorAll('[class][data-ft]');
+                            for (let i = 0; i < first_nodes.length; i++) {
+                                let video = first_nodes[i].getElementsByTagName('video')[0];
+                                if (video !== undefined && typeof video === 'object') {
+                                    setTimeout(function () {
+                                        addBtnSpeedToVideo(video);
+                                    }, 1000);
+                                }
                             }
+                            start_init(target);
                         }
-                        start_init(target);
-                    }
-                }
-            }, 1000);
+                    }, 1000);
+                    break;
+                default:
+                // code block
+            }
         };
 
         return {
