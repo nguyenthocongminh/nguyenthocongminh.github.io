@@ -289,6 +289,9 @@
                     .querySelector('._1otk._3t1r._4ubd')
                     .querySelectorAll('._1c7f')[2];
                 let btn_focus = control_area_focus.querySelector('._2j04');
+                if (btn_focus === null) {
+                    return;
+                }
                 let new_btn = document.createElement('div');
                 new_btn.className = '_2j04';
                 let new_btn_content_direct = document.createElement('div');
@@ -407,12 +410,14 @@
                     let node = mutation.addedNodes[0];
                     switch(_case) {
                         case 1:
-                            setTimeout(function (e) {
+                            setTimeout(function (/* e */) {
                                 node = mutation.addedNodes[0];
-                                let video = node.querySelectorAll('video');
-                                if (video.length > 0) {
-                                    for (let i = 0; i < video.length; i++) {
-                                        addBtnSpeedToVideo(video[i]);
+                                if (node !== null) {
+                                    let video = node.querySelectorAll('video');
+                                    if (video.length > 0) {
+                                        for (let i = 0; i < video.length; i++) {
+                                            addBtnSpeedToVideo(video[i]);
+                                        }
                                     }
                                 }
                             }, 1000);
@@ -449,6 +454,17 @@
             switch(_case) {
                 case 1:
                     target = document.querySelector('[role="feed"] > [id*="more_pager"] > div:first-child');
+                    let first = document.querySelectorAll('[role="feed"] > ._4ikz');
+                    if (first !== null) {
+                        for (let i = 0; i < first.length; i++) {
+                            let video = first[i].querySelector('video');
+                            if (video !== null) {
+                                video.addEventListener('loadstart', function (/* e */) {
+                                    addBtnSpeedToVideo(video);
+                                });
+                            }
+                        }
+                    }
                     start_init(target);
                     break;
                 case 2:
