@@ -19,7 +19,6 @@ img {
 }
 
 .night-mode-switch .slider {
-    font: normal normal normal 14px/1 FontAwesome;
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -30,12 +29,6 @@ img {
     -webkit-transition: .2s;
     transition: .2s;
 
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    display: inline-block;
-    font-style: normal;
-    font-variant: normal;
-    text-rendering: auto;
     line-height: 26px;
     text-align: center;
 }
