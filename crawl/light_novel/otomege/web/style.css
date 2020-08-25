@@ -25,7 +25,8 @@ img {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    color: #ff6a00;
+    background-color: #ff6a00;
     -webkit-transition: .2s;
     transition: .2s;
 
@@ -46,11 +47,12 @@ img {
 }
 
 .night-mode-switch input:checked + .slider {
-    background-color: #2196F3;
+    color: #8800ff;
+    background-color: #8800ff;
 }
 
 .night-mode-switch input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
+    box-shadow: 0 0 1px #8800ff;
 }
 
 .night-mode-switch input:checked + .slider:before {
