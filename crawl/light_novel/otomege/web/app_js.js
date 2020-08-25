@@ -33,8 +33,10 @@
     const nightModeChange = function (mode) {
         if (mode) {
             document.body.classList.add('night-mode');
+            localStorage.nightMode = true;
         } else {
             document.body.classList.remove('night-mode');
+            localStorage.nightMode = false;
         }
     }
 
