@@ -71,7 +71,7 @@ img {
     border-radius: 50%;
 }
 
-.night-mode {
-    background: #222;
-    color: #eee;
+.night-mode, .night-mode * {
+    background: #222!important;
+    color: #eee!important;
 }
