@@ -1,6 +1,6 @@
 (function (){
     let nightMode = false;
-    if (localStorage.nightMode && localStorage.nightMode === true) {
+    if (localStorage.nightMode && localStorage.nightMode === "true") {
         nightMode = true;
     }
 
