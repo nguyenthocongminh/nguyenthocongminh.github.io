@@ -70,3 +70,8 @@ img {
 .night-mode-switch .slider.round:before {
     border-radius: 50%;
 }
+
+.night-mode {
+    background: #222;
+    color: #eee;
+}

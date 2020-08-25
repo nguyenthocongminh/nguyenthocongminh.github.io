@@ -1,7 +1,4 @@
 (function (){
-    let backgroundNightColorHex = '#222';
-    let textNightColorHex = '#eee';
-
     let nightMode = false;
     if (localStorage.nightMode && localStorage.nightMode === true) {
         nightMode = true;
@@ -29,7 +26,23 @@
         input.checked = true;
     }
     let spanSwitch = document.createElement('span');
-    spanSwitch.className = 'slider round';
+    spanSwitch.className = 'fa slider round';
     switchMode.appendChild(input);
     switchMode.appendChild(spanSwitch);
+
+    const nightModeChange = function (mode) {
+        if (mode) {
+            document.body.classList.add('night-mode');
+        } else {
+            document.body.classList.remove('night-mode');
+        }
+    }
+
+    if (nightMode) {
+        nightModeChange(true);
+    }
+
+    input.addEventListener('change', function () {
+        nightModeChange(this.checked);
+    })
 })();
