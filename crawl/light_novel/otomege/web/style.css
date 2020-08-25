@@ -27,13 +27,22 @@ img {
     right: 0;
     bottom: 0;
     background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
+    -webkit-transition: .2s;
+    transition: .2s;
+
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 26px;
+    text-align: center;
 }
 
 .night-mode-switch .slider:before {
     position: absolute;
-    content: "\f186";
+    content: "\f185";
     height: 26px;
     width: 26px;
     left: 4px;
@@ -52,6 +61,7 @@ img {
 }
 
 .night-mode-switch input:checked + .slider:before {
+    content: "\f186";
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
