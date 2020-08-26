@@ -14,8 +14,8 @@
     let NightModeToolArea = document.createElement('div');
     NightModeToolArea.className = 'night-mode-switch';
     NightModeToolArea.style.position = 'fixed';
-    NightModeToolArea.style.top = '25px';
-    NightModeToolArea.style.right = '25px';
+    NightModeToolArea.style.top = '15px';
+    NightModeToolArea.style.right = '15px';
     document.body.appendChild(NightModeToolArea);
     let switchMode = document.createElement('label');
     switchMode.className = 'switch';
