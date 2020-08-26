@@ -2,6 +2,11 @@ html, body {
     overflow-x: hidden;
 }
 
+.night-mode, .night-mode * {
+    background: #222!important;
+    color: #eee!important;
+}
+
 #commentform #comment-form-identity {
     display: none;
 }
@@ -79,9 +84,4 @@ img {
 
 .night-mode-switch .slider.round:before {
     border-radius: 50%;
-}
-
-.night-mode, .night-mode * {
-    background: #222!important;
-    color: #eee!important;
 }
