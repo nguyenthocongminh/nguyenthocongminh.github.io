@@ -1,13 +1,23 @@
+html {
+    overflow-x: hidden;
+}
+
 #commentform #comment-form-identity {
     display: none;
 }
 img {
     max-width: 100%;
+    height: 100%;
+}
+
+.night-mode-switch {
+    background: transparent!important;
 }
 
 .night-mode-switch .switch {
     position: relative;
     display: inline-block;
+    background: transparent!important;
     width: 60px;
     height: 34px;
 }
@@ -27,8 +37,8 @@ img {
     bottom: 0;
     color: #ff6a00!important;
     background-color: #ff6a00!important;
-    -webkit-transition: .2s;
-    transition: .2s;
+    /*-webkit-transition: .2s;*/
+    /*transition: .2s;*/
 
     line-height: 26px;
     text-align: center;
