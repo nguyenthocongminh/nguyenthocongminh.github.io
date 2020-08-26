@@ -7,6 +7,13 @@ html, body {
     color: #eee!important;
 }
 
+.night-mode a {
+    color: #888888!important;
+}
+.night-mode a:visited {
+    color: #5a5a5a;
+}
+
 #commentform #comment-form-identity {
     display: none;
 }
