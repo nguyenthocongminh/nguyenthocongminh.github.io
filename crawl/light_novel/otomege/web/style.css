@@ -8,10 +8,10 @@ html, body {
 }
 
 .night-mode a {
-    color: #888888!important;
+    color: #cccccc!important;
 }
 .night-mode a:visited {
-    color: #5a5a5a!important;
+    color: #888888!important;
 }
 
 #commentform #comment-form-identity {
